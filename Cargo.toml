@@ -1,0 +1,25 @@
+[package]
+name = "pnpm-shell-completion"
+version = "0.0.0"
+edition = "2021"
+authors = ["Pig Fang <g-plane@hotmail.com>"]
+description = "Complete your pnpm command fastly."
+repository = "https://github.com/g-plane/pnpm-shell-completion"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0"
+futures = "0.3"
+globset = "0.4"
+itertools = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+tokio = { version = "1.25", features = ["fs", "macros", "rt-multi-thread"] }
+walkdir = "2.3"
+
+[profile.release]
+codegen-units = 1
+strip = true
