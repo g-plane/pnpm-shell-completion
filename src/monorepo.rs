@@ -12,6 +12,16 @@ struct PnpmWorkspace<'s> {
     packages: Vec<&'s str>,
 }
 
+pub async fn read_root_package_json() -> anyhow::Result<PackageJson> {
+    let json = fs::read_to_string(
+        env::current_dir()
+            .unwrap_or_else(|_| PathBuf::from("."))
+            .join("package.json"),
+    )
+    .await;
+    serde_json::from_str(json.as_deref().unwrap_or("{}")).map_err(anyhow::Error::from)
+}
+
 pub async fn read_package_jsons() -> anyhow::Result<Vec<PackageJson>> {
     let globs = read_workspace_config().await?;
     let jsons = join_all(
@@ -75,4 +85,13 @@ fn build_glob_set(globs: &[&str]) -> Result<GlobSet, globset::Error> {
             Ok(globset_builder)
         })?
         .build()
+}
+
+pub fn pick_target_pkg(args: &[String]) -> Option<&str> {
+    args.iter().find_map(|arg| {
+        arg.strip_prefix("--filter=")
+            .or_else(|| arg.strip_prefix("--filter"))
+            .or_else(|| arg.strip_prefix("-F="))
+            .or_else(|| arg.strip_prefix("-F"))
+    })
 }
