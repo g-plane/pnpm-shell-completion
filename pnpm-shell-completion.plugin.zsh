@@ -12,7 +12,7 @@ _pnpm() {
             _values 'filter packages' $($bin_path $words)
             ;;
         scripts)
-            _values 'scripts' $($bin_path $words) add rm
+            _values 'scripts' $($bin_path $words) add remove rm
         ;;
     esac
 }
