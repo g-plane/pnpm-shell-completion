@@ -12,7 +12,8 @@ _pnpm() {
             _values 'filter packages' $(FEATURE=filter $bin_path $words)
             ;;
         scripts)
-            _values 'scripts' $(FEATURE=scripts $bin_path $words) add remove rm
+            _values 'scripts' $(FEATURE=scripts $bin_path $words) \
+                add remove rm install i update upgrade up publish
         ;;
     esac
 }
