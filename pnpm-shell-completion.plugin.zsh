@@ -9,10 +9,10 @@ _pnpm() {
 
     case $state in
         filter)
-            _values 'filter packages' $($bin_path $words)
+            _values 'filter packages' $(FEATURE=filter $bin_path $words)
             ;;
         scripts)
-            _values 'scripts' $($bin_path $words) add remove rm
+            _values 'scripts' $(FEATURE=scripts $bin_path $words) add remove rm
         ;;
     esac
 }
