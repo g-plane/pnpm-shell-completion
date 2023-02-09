@@ -61,6 +61,8 @@ _pnpm() {
                         '(--recursive -r)'{--recursive,-r}'[Publish all packages from the workspace]' \
                         '--tag=[Registers the published package with the given tag]'
                     ;;
+                *)
+                    _files
             esac
     esac
 }
