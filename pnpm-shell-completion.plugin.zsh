@@ -9,7 +9,9 @@ _pnpm() {
 
     case $state in
         filter)
-            _values 'filter packages' $(FEATURE=filter $bin_path $words)
+            if [[ -f ./pnpm-workspace.yaml ]]; then
+                _values 'filter packages' $(FEATURE=filter $bin_path $words)
+            fi
             ;;
         scripts)
             _values 'scripts' $(FEATURE=scripts $bin_path $words) \
