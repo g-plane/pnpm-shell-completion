@@ -69,6 +69,11 @@ _pnpm() {
                         '(--recursive -r)'{--recursive,-r}'[Publish all packages from the workspace]' \
                         '--tag=[Registers the published package with the given tag]'
                     ;;
+                run)
+                    if [[ -f ./package.json ]]; then
+                        _values 'scripts' $(FEATURE=scripts $bin_path $words)
+                    fi
+                    ;;
                 *)
                     _files
             esac
