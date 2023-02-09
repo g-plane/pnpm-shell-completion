@@ -3,10 +3,14 @@
 local bin_path="$(dirname $0)/target/release/pnpm-shell-completion"
 
 _pnpm() {
+    typeset -A opt_args
+
     _arguments \
         '(--filter -F)'{--filter,-F}'=:flag:->filter' \
         ':command:->scripts' \
         '*:: :->command_args'
+
+    local target_pkg=${opt_args[--filter]:-$opt_args[-F]}
 
     case $state in
         filter)
@@ -15,7 +19,7 @@ _pnpm() {
             fi
             ;;
         scripts)
-            _values 'scripts' $(FEATURE=scripts $bin_path $words) \
+            _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path $words) \
                 add remove install update publish
             ;;
         command_args)
@@ -41,7 +45,7 @@ _pnpm() {
                     ;;
                 remove|rm|why)
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps $bin_path $words)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path $words)
                     fi
                     ;;
                 update)
@@ -54,7 +58,7 @@ _pnpm() {
                         '(--prod -P)'{--prod,-P}'[Update packages only in "dependencies" and "optionalDependencies"]' \
                         '(--recursive -r)'{--recursive,-r}'[Update in every package found in subdirectories or every workspace package]'
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps $bin_path $words)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path $words)
                     fi
                     ;;
                 publish)
@@ -71,7 +75,7 @@ _pnpm() {
                     ;;
                 run)
                     if [[ -f ./package.json ]]; then
-                        _values 'scripts' $(FEATURE=scripts $bin_path $words)
+                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path $words)
                     fi
                     ;;
                 *)

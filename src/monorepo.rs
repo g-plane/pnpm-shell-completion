@@ -1,7 +1,6 @@
 use crate::types::PackageJson;
 use futures::future::join_all;
 use globset::{GlobBuilder, GlobSet, GlobSetBuilder};
-use itertools::Itertools;
 use serde::Deserialize;
 use std::{env, path::PathBuf};
 use tokio::{fs, task::JoinError};
@@ -86,18 +85,4 @@ fn build_glob_set(globs: &[&str]) -> Result<GlobSet, globset::Error> {
             Ok(globset_builder)
         })?
         .build()
-}
-
-pub fn pick_target_pkg(args: &[String]) -> Option<&str> {
-    args.iter()
-        .find_map(|arg| {
-            arg.strip_prefix("--filter=")
-                .or_else(|| arg.strip_prefix("-F="))
-        })
-        .or_else(|| {
-            args.iter()
-                .find_position(|arg| *arg == "--filter" || *arg == "-F")
-                .and_then(|(i, ..)| args.get(i + 1))
-                .map(|s| s.as_str())
-        })
 }
