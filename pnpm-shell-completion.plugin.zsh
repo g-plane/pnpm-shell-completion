@@ -39,6 +39,11 @@ _pnpm() {
                         '--prefer-offline[Skip staleness checks for cached data, but request missing data from the server]' \
                         '(--prod -P)'{--prod,-P}"[Packages in \`devDependencies\` won't be installed]"
                     ;;
+                remove|rm|why)
+                    if [[ -f ./package.json ]]; then
+                        _values 'deps' $(FEATURE=deps $bin_path $words)
+                    fi
+                    ;;
                 update)
                     _arguments \
                         '(--dev -D)'{--dev,-D}'[Update packages only in "devDependencies"]' \
@@ -48,6 +53,9 @@ _pnpm() {
                         "--no-optional[Don't update packages in \`optionalDependencies\`]" \
                         '(--prod -P)'{--prod,-P}'[Update packages only in "dependencies" and "optionalDependencies"]' \
                         '(--recursive -r)'{--recursive,-r}'[Update in every package found in subdirectories or every workspace package]'
+                    if [[ -f ./package.json ]]; then
+                        _values 'deps' $(FEATURE=deps $bin_path $words)
+                    fi
                     ;;
                 publish)
                     _arguments \

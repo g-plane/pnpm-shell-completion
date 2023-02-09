@@ -1,5 +1,6 @@
 use std::env;
 
+mod deps;
 mod filter;
 mod monorepo;
 mod pnpm_cmd;
@@ -15,6 +16,10 @@ async fn main() -> anyhow::Result<()> {
         Ok("scripts") => println!(
             "{}",
             scripts::provide_scripts_candidate(monorepo::pick_target_pkg(&args)).await?
+        ),
+        Ok("deps") => println!(
+            "{}",
+            deps::provide_deps_candidate(monorepo::pick_target_pkg(&args)).await?
         ),
         Ok("pnpm_cmd") => {
             if let Some(cmd) = pnpm_cmd::extract_pnpm_cmd(&args) {
