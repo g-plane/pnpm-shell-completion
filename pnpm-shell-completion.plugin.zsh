@@ -15,11 +15,11 @@ _pnpm() {
     case $state in
         filter)
             if [[ -f ./pnpm-workspace.yaml ]]; then
-                _values 'filter packages' $(FEATURE=filter $bin_path $words)
+                _values 'filter packages' $(FEATURE=filter $bin_path)
             fi
             ;;
         scripts)
-            _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path $words) \
+            _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path) \
                 add remove install update publish
             ;;
         command_args)
@@ -45,7 +45,7 @@ _pnpm() {
                     ;;
                 remove|rm|why)
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path $words)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path)
                     fi
                     ;;
                 update)
@@ -58,7 +58,7 @@ _pnpm() {
                         '(--prod -P)'{--prod,-P}'[Update packages only in "dependencies" and "optionalDependencies"]' \
                         '(--recursive -r)'{--recursive,-r}'[Update in every package found in subdirectories or every workspace package]'
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path $words)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path)
                     fi
                     ;;
                 publish)
@@ -75,7 +75,7 @@ _pnpm() {
                     ;;
                 run)
                     if [[ -f ./package.json ]]; then
-                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path $words)
+                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path)
                     fi
                     ;;
                 *)
