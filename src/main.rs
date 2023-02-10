@@ -11,7 +11,6 @@ mod types;
 async fn main() -> anyhow::Result<()> {
     let args = env::args().collect::<Vec<_>>();
     let target_pkg = env::var("TARGET_PKG")
-        .map(|s| s.trim().to_owned())
         .ok()
         .and_then(|value| (!value.is_empty()).then_some(value));
 
