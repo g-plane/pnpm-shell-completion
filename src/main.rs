@@ -9,7 +9,6 @@ mod types;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let args = env::args().collect::<Vec<_>>();
     let target_pkg = env::var("TARGET_PKG")
         .ok()
         .and_then(|value| (!value.is_empty()).then_some(value));
@@ -25,6 +24,7 @@ async fn main() -> anyhow::Result<()> {
             deps::provide_deps_candidate(target_pkg.as_deref()).await?
         ),
         Ok("pnpm_cmd") => {
+            let args = env::args().collect::<Vec<_>>();
             if let Some(cmd) = pnpm_cmd::extract_pnpm_cmd(&args) {
                 print!("{cmd}");
             }
