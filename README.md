@@ -16,6 +16,10 @@ _You may also like:_
 - Provide completion for `pnpm remove` command, even in workspace's packages (by specifying `--filter` option).
 - Provide completion for npm scripts in `package.json`.
 
+Note that we won't provide completion for all commands and options,
+and we only focus those frequently used.
+Too many completion items may have impact on efficiency.
+
 ## License
 
 MIT License
