@@ -4,12 +4,16 @@ set -e
 local version=$(grep '^version =' Cargo.toml | cut -d'"' -f2)
 
 if [ $(uname) = "Darwin" ]; then
-    platform="macos"
+    if [ $(uname -m) = "arm64" ]; then
+        target="aarch64-apple-darwin"
+    else
+        target="x86_64-apple-darwin"
+    fi
 else
-    platform="ubuntu"
+    target="x86_64-unknown-linux-musl"
 fi
 
-local url="https://github.com/g-plane/pnpm-shell-completion/releases/download/v$version/pnpm-shell-completion_$platform-latest.zip"
+local url="https://github.com/g-plane/pnpm-shell-completion/releases/download/v$version/pnpm-shell-completion_$target.zip"
 
 if [ $(hash wget 2>/dev/null) ]; then
     wget $url > zipball.zip
