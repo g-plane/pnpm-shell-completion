@@ -9,8 +9,10 @@ mod types;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    let args = env::args().collect::<Vec<_>>();
     let target_pkg = env::var("TARGET_PKG")
         .ok()
+        .or_else(|| monorepo::pick_target_pkg(&args).map(|s| s.to_owned()))
         .and_then(|value| (!value.is_empty()).then_some(value));
 
     match env::var("FEATURE").as_deref() {
@@ -24,7 +26,6 @@ async fn main() -> anyhow::Result<()> {
             deps::provide_deps_candidate(target_pkg.as_deref()).await?
         ),
         Ok("pnpm_cmd") => {
-            let args = env::args().collect::<Vec<_>>();
             if let Some(cmd) = pnpm_cmd::extract_pnpm_cmd(&args) {
                 print!("{cmd}");
             }
