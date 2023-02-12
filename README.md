@@ -41,6 +41,20 @@ Update your `.zshrc` file with the following line:
 zplug "g-plane/pnpm-shell-completion", hook-build:"./zplug.zsh", defer:2
 ```
 
+### Arch Linux
+
+Install it with any AUR helper, for example:
+
+```shell
+paru -S pnpm-shell-completion
+```
+
+Then, update your `.zshrc` file with the following line:
+
+```shell
+source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
+```
+
 ### Oh My Zsh
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
