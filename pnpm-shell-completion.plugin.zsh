@@ -1,6 +1,11 @@
 #compdef pnpm
 
-local bin_path="$(dirname $0)/pnpm-shell-completion"
+local bin_path
+if command -v pnpm-shell-completion &> /dev/null; then
+    bin_path="$(which pnpm-shell-completion)"
+else
+    bin_path="$(dirname $0)/pnpm-shell-completion"
+fi
 
 _pnpm() {
     typeset -A opt_args
