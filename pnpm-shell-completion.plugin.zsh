@@ -1,6 +1,6 @@
 #compdef pnpm
 
-local bin_path="$(dirname $0)/target/release/pnpm-shell-completion"
+local bin_path="$(dirname $0)/pnpm-shell-completion"
 
 _pnpm() {
     typeset -A opt_args
