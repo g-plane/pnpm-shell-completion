@@ -61,5 +61,3 @@ jobs:
           files: |
             pnpm-shell-completion_*.zip
             pnpm-shell-completion_*.tar.gz
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
