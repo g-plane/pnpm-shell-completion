@@ -47,7 +47,7 @@ jobs:
           mkdir dist
           cp ./target/release/pnpm-shell-completion dist/
           cp ./pnpm-shell-completion.plugin.zsh dist/
-          cp ./install.sh dist/
+          cp ./install.zsh dist/
           cp ./README.md dist/
           cp ./LICENSE dist/
           cd dist
