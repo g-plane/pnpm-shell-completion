@@ -1,6 +1,6 @@
 [package]
 name = "pnpm-shell-completion"
-version = "0.1.3"
+version = "0.2.0"
 edition = "2021"
 authors = ["Pig Fang <g-plane@hotmail.com>"]
 description = "Complete your pnpm command fastly."
