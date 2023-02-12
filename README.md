@@ -24,9 +24,7 @@ Too many completion items may have impact on efficiency.
 
 ## Installation
 
-### With a plugin manager
-
-#### [zinit](https://github.com/zdharma/zinit)
+### [zinit](https://github.com/zdharma/zinit)
 
 Update your `.zshrc` file with the following line:
 
@@ -35,7 +33,7 @@ zinit ice atload"zpcdreplay" atclone"./zplug.zsh"
 zinit light g-plane/pnpm-shell-completion
 ```
 
-#### [zplug](https://github.com/zplug/zplug)
+### [zplug](https://github.com/zplug/zplug)
 
 Update your `.zshrc` file with the following line:
 
