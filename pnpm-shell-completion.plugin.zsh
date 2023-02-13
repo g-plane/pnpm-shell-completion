@@ -36,7 +36,7 @@ _pnpm() {
                         '(--save-dev -D)'{--save-dev,-D}'[Save package to your `devDependencies`]' \
                         '--save-peer[Save package to your `peerDependencies` and `devDependencies`]'
                     ;;
-                install)
+                install|i)
                     _arguments \
                         '(--dev -D)'{--dev,-D}'[Only `devDependencies` are installed regardless of the `NODE_ENV`]' \
                         '--fix-lockfile[Fix broken lockfile entries automatically]' \
