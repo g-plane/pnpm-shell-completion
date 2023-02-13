@@ -41,9 +41,7 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
     elseif ($wordToComplete.StartsWith("-F=") -or $wordToComplete.StartsWith("--filter=")) {
         $env:FEATURE = "filter"
         $param = $wordToComplete.Split("=")[0]
-        $(& $binPath).Split("`n")
-        | Where-Object { $_.Trim() -ne "" }
-        | ForEach-Object {
+        $(& $binPath).Split("`n") | Where-Object { $_.Trim() -ne "" } | ForEach-Object {
             $param = $wordToComplete.Split("=")[0]
             [System.Management.Automation.CompletionResult]::new($param + "=" + $_, $_, 'ParameterValue', $_)
         }
