@@ -6,11 +6,6 @@ or
 
 [![asciicast](https://asciinema.org/a/559081.svg)](https://asciinema.org/a/559081)
 
-Supported shells:
-
-- Zsh
-- PowerShell Core
-
 _You may also like:_
 
 - [icd](https://github.com/g-plane/icd) - Powerful `cd` command with fuzzy-search tool.
@@ -24,6 +19,11 @@ _You may also like:_
 Note that we won't provide completion for all commands and options,
 and we only focus those frequently used.
 Too many completion items may have impact on efficiency.
+
+### Supported shells
+
+- Zsh
+- PowerShell Core
 
 ## Installation
 
