@@ -49,7 +49,7 @@ jobs:
       - name: Build
         run: ${{ matrix.settings.build }}
       - name: Pack
-        if: matrix.settings.host != "windows-latest"
+        if: matrix.settings.host != 'windows-latest'
         run: |
           mkdir dist
           cp ./target/release/pnpm-shell-completion dist/
@@ -63,7 +63,7 @@ jobs:
           ls -l
           cd ..
       - name: Pack
-        if: matrix.settings.host == "windows-latest"
+        if: matrix.settings.host == 'windows-latest'
         shell: pwsh
         run: |
           New-Item -ItemType Directory dist
