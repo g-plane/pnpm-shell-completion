@@ -18,13 +18,18 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
     }
 
     if ($commandAst.CommandElements.Count -eq 1) {
-        $env:FEATURE = "scripts"
-        $baseItems = @("add", "remove", "install", "update", "publish", "-F", "--filter")
-        $result = $baseItems + $(& $binPath $words).Split("`n") | ForEach-Object {
+        $items = @("add", "remove", "install", "update", "publish")
+        if (Test-Path "./pnpm-workspace.yaml") {
+            $items += @("-F", "--filter")
+        }
+        if (Test-Path "./package.json") {
+            $env:FEATURE = "scripts"
+            $items += $(& $binPath $words).Split("`n")
+            Remove-Item Env:\FEATURE
+        }
+        return $items | ForEach-Object {
             [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
         }
-        Remove-Item Env:\FEATURE
-        return $result
     }
 
     $words = $commandAst.CommandElements | ForEach-Object { $_.ToString() }
