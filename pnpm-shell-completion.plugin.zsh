@@ -53,7 +53,7 @@ _pnpm() {
                         _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path)
                     fi
                     ;;
-                update)
+                update|upgrade|up)
                     _arguments \
                         '(--dev -D)'{--dev,-D}'[Update packages only in "devDependencies"]' \
                         '(--global -g)'{--global,-g}'[Update globally installed packages]' \
@@ -71,7 +71,7 @@ _pnpm() {
                         '--access=[Tells the registry whether this package should be published as public or restricted]: :(public restricted)' \
                         '--dry-run[Does everything a publish would do except actually publishing to the registry]' \
                         '--force[Packages are proceeded to be published even if their current version is already in the registry]' \
-                        '--ignore-scrips[Ignores any publish related lifecycle scripts (prepublishOnly, postpublish, and the like)]' \
+                        '--ignore-scripts[Ignores any publish related lifecycle scripts (prepublishOnly, postpublish, and the like)]' \
                         "--no-git-checks[Don't check if current branch is your publish branch, clean, and up to date]" \
                         '--otp[Specify a one-time password]' \
                         '--publish-branch[Sets branch name to publish]' \
