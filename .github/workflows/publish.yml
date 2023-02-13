@@ -32,6 +32,9 @@ jobs:
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
             build: cargo build --release
+          - host: windows-latest
+            target: x86_64-pc-windows-gnu
+            build: cargo build --release
     name: ${{ matrix.settings.target }}
     runs-on: ${{ matrix.settings.host }}
     steps:
@@ -46,6 +49,7 @@ jobs:
       - name: Build
         run: ${{ matrix.settings.build }}
       - name: Pack
+        if: matrix.settings.host != "windows-latest"
         run: |
           mkdir dist
           cp ./target/release/pnpm-shell-completion dist/
@@ -58,6 +62,16 @@ jobs:
           tar -zcvf ../pnpm-shell-completion_${{ matrix.settings.target }}.tar.gz *
           ls -l
           cd ..
+      - name: Pack
+        if: matrix.settings.host == "windows-latest"
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory dist
+          Copy-Item .\target\release\pnpm-shell-completion.exe dist
+          Copy-Item .\pnpm-shell-completion.ps1 dist
+          Copy-Item .\README.md dist
+          Copy-Item .\LICENSE dist
+          Compress-Archive "dist\*" pnpm-shell-completion_${{ matrix.settings.target }}.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:

@@ -6,7 +6,10 @@ or
 
 [![asciicast](https://asciinema.org/a/559081.svg)](https://asciinema.org/a/559081)
 
-Currently only Zsh is supported.
+Supported shells:
+
+- Zsh
+- PowerShell Core
 
 _You may also like:_
 
@@ -83,6 +86,18 @@ plugins=(
 ```
 
 Restart your terminal.
+
+### PowerShell Core
+
+Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
+page and download `pnpm-shell-completion_x86_64-pc-windows-gnu.zip`, then decompress it.
+
+Edit your PowerShell profile file (if you don't know where it is, run `echo $PROFILE` to check it),
+and add the following line:
+
+```powershell
+. path\to\the\directory\you\decompressed\pnpm-shell-completion.ps1
+```
 
 ## License
 
