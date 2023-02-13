@@ -1,7 +1,21 @@
 Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
     param($wordToComplete, $commandAst)
 
-    $binPath = "pnpm-shell-completion"
+    $binPath = if (Test-Path "$PSScriptRoot/pnpm-shell-completion.exe") {
+        "$PSScriptRoot/pnpm-shell-completion.exe"
+    }
+    elseif (Test-Path "$PSScriptRoot/pnpm-shell-completion") {
+        "$PSScriptRoot/pnpm-shell-completion"
+    }
+    elseif (Test-Path pnpm-shell-completion.exe) {
+        "pnpm-shell-completion.exe"
+    }
+    elseif (Test-Path pnpm-shell-completion) {
+        "pnpm-shell-completion"
+    }
+    else {
+        return
+    }
 
     if ($commandAst.CommandElements.Count -eq 1) {
         $env:FEATURE = "scripts"
