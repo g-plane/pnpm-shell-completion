@@ -1,10 +1,10 @@
 #compdef pnpm
 
-local bin_path
+local bin
 if command -v pnpm-shell-completion &> /dev/null; then
-    bin_path="$(which pnpm-shell-completion)"
+    bin="$(which pnpm-shell-completion)"
 else
-    bin_path="$(dirname $0)/pnpm-shell-completion"
+    bin="$(dirname $0)/pnpm-shell-completion"
 fi
 
 _pnpm() {
@@ -20,15 +20,15 @@ _pnpm() {
     case $state in
         filter)
             if [[ -f ./pnpm-workspace.yaml ]]; then
-                _values 'filter packages' $(FEATURE=filter $bin_path)
+                _values 'filter packages' $(FEATURE=filter $bin)
             fi
             ;;
         scripts)
-            _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path) \
+            _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin) \
                 add remove install update publish
             ;;
         command_args)
-            local cmd=$(FEATURE=pnpm_cmd $bin_path $words)
+            local cmd=$(FEATURE=pnpm_cmd $bin $words)
             case $cmd in
                 add)
                     _arguments \
@@ -50,7 +50,7 @@ _pnpm() {
                     ;;
                 remove|rm|why)
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin)
                     fi
                     ;;
                 update|upgrade|up)
@@ -63,7 +63,7 @@ _pnpm() {
                         '(--prod -P)'{--prod,-P}'[Update packages only in "dependencies" and "optionalDependencies"]' \
                         '(--recursive -r)'{--recursive,-r}'[Update in every package found in subdirectories or every workspace package]'
                     if [[ -f ./package.json ]]; then
-                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin_path)
+                        _values 'deps' $(FEATURE=deps TARGET_PKG=$target_pkg $bin)
                     fi
                     ;;
                 publish)
@@ -80,7 +80,7 @@ _pnpm() {
                     ;;
                 run)
                     if [[ -f ./package.json ]]; then
-                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin_path)
+                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $bin)
                     fi
                     ;;
                 *)

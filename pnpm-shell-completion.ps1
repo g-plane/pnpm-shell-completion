@@ -1,7 +1,7 @@
 Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
     param($wordToComplete, $commandAst)
 
-    $binPath = if (Test-Path "$PSScriptRoot/pnpm-shell-completion.exe") {
+    $bin = if (Test-Path "$PSScriptRoot/pnpm-shell-completion.exe") {
         "$PSScriptRoot/pnpm-shell-completion.exe"
     }
     elseif (Test-Path "$PSScriptRoot/pnpm-shell-completion") {
@@ -24,7 +24,7 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
         }
         if (Test-Path "./package.json") {
             $env:FEATURE = "scripts"
-            $items += $(& $binPath $words).Split("`n")
+            $items += $(& $bin $words).Split("`n")
             Remove-Item Env:\FEATURE
         }
         return $items | ForEach-Object {
@@ -39,21 +39,21 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
 
     $result = if ($hasFilterWithoutEquals -and $commandAst.CommandElements.Count -eq 2) {
         $env:FEATURE = "filter"
-        $(& $binPath).Split("`n") | ForEach-Object {
+        $(& $bin).Split("`n") | ForEach-Object {
             [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
         }
     }
     elseif ($wordToComplete.StartsWith("-F=") -or $wordToComplete.StartsWith("--filter=")) {
         $env:FEATURE = "filter"
         $param = $wordToComplete.Split("=")[0]
-        $(& $binPath).Split("`n") | ForEach-Object {
+        $(& $bin).Split("`n") | ForEach-Object {
             $param = $wordToComplete.Split("=")[0]
             [System.Management.Automation.CompletionResult]::new($param + "=" + $_, $_, 'ParameterValue', $_)
         }
     }
     else {
         $env:FEATURE = "pnpm_cmd"
-        $cmd = $(& $binPath $words)
+        $cmd = $(& $bin $words)
 
         if ($cmd -eq "add") {
             @(
@@ -77,7 +77,7 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
         }
         elseif ($cmd -eq "remove" -or $cmd -eq "rm" -or $cmd -eq "why") {
             $env:FEATURE = "deps"
-            $(& $binPath $words).Split("`n") | ForEach-Object {
+            $(& $bin $words).Split("`n") | ForEach-Object {
                 [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
             }
         }
@@ -92,7 +92,7 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
                 [System.Management.Automation.CompletionResult]::new("--recursive", "--recursive", 'ParameterValue', "Update in every package found in subdirectories or every workspace package")
             )
             $env:FEATURE = "deps"
-            $deps = $(& $binPath $words).Split("`n") | ForEach-Object {
+            $deps = $(& $bin $words).Split("`n") | ForEach-Object {
                 [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
             }
             $options + $deps
@@ -112,14 +112,14 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
         }
         elseif ($cmd -eq "run") {
             $env:FEATURE = "scripts"
-            $(& $binPath $words).Split("`n") | ForEach-Object {
+            $(& $bin $words).Split("`n") | ForEach-Object {
                 [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
             }
         }
         else {
             $env:FEATURE = "scripts"
             $baseItems = @("add", "remove", "install", "update", "publish")
-            $baseItems + $(& $binPath $words).Split("`n") | ForEach-Object {
+            $baseItems + $(& $bin $words).Split("`n") | ForEach-Object {
                 [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
             }
         }
