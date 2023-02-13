@@ -20,7 +20,7 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
     if ($commandAst.CommandElements.Count -eq 1) {
         $env:FEATURE = "scripts"
         $baseItems = @("add", "remove", "install", "update", "publish", "-F", "--filter")
-        $result = $baseItems + $(& $binPath $words).Split("`n") | Where-Object { $_ -like "$wordToComplete*" } | ForEach-Object {
+        $result = $baseItems + $(& $binPath $words).Split("`n") | ForEach-Object {
             [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
         }
         Remove-Item Env:\FEATURE
@@ -34,14 +34,14 @@ Register-ArgumentCompleter -CommandName pnpm -Native -ScriptBlock {
 
     $result = if ($hasFilterWithoutEquals -and $commandAst.CommandElements.Count -eq 2) {
         $env:FEATURE = "filter"
-        $(& $binPath).Split("`n") | Where-Object { $_.Trim() -ne "" } | ForEach-Object {
+        $(& $binPath).Split("`n") | ForEach-Object {
             [System.Management.Automation.CompletionResult]::new($_, $_, 'ParameterValue', $_)
         }
     }
     elseif ($wordToComplete.StartsWith("-F=") -or $wordToComplete.StartsWith("--filter=")) {
         $env:FEATURE = "filter"
         $param = $wordToComplete.Split("=")[0]
-        $(& $binPath).Split("`n") | Where-Object { $_.Trim() -ne "" } | ForEach-Object {
+        $(& $binPath).Split("`n") | ForEach-Object {
             $param = $wordToComplete.Split("=")[0]
             [System.Management.Automation.CompletionResult]::new($param + "=" + $_, $_, 'ParameterValue', $_)
         }
