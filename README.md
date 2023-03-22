@@ -32,7 +32,7 @@ Too many completion items may have impact on efficiency.
 Update your `.zshrc` file with the following line:
 
 ```zsh
-zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"./zplug.zsh"
+zinit ice atload"zpcdreplay" atclone"./zplug.zsh" atpull"%atclone"
 zinit light g-plane/pnpm-shell-completion
 ```
 
