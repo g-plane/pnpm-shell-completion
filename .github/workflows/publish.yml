@@ -63,15 +63,19 @@ jobs:
           ls -l
           cd ..
       - name: Pack
-        if: matrix.settings.host == 'windows-latest'
         shell: pwsh
         run: |
           New-Item -ItemType Directory dist
-          Copy-Item .\target\release\pnpm-shell-completion.exe dist
+          if (Test-Path .\target\release\pnpm-shell-completion.exe) {
+            Copy-Item .\target\release\pnpm-shell-completion.exe dist
+          }
+          elseif (Test-Path .\target\release\pnpm-shell-completion) {
+            Copy-Item .\target\release\pnpm-shell-completion dist
+          }
           Copy-Item .\pnpm-shell-completion.ps1 dist
           Copy-Item .\README.md dist
           Copy-Item .\LICENSE dist
-          Compress-Archive "dist\*" pnpm-shell-completion_${{ matrix.settings.target }}.zip
+          Compress-Archive "dist\*" pnpm-shell-completion_pwsh_${{ matrix.settings.target }}.zip
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
