@@ -65,6 +65,9 @@ jobs:
       - name: Pack
         shell: pwsh
         run: |
+          if (Test-Path dist) {
+            Remove-Item -Recurse -Force dist
+          }
           New-Item -ItemType Directory dist
           if (Test-Path .\target\release\pnpm-shell-completion.exe) {
             Copy-Item .\target\release\pnpm-shell-completion.exe dist
