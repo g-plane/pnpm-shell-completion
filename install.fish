@@ -6,7 +6,7 @@ end
 if test -d $argv[1]
     mkdir -p ~/.config/fish/completions/
     cp ./pnpm-shell-completion.fish ~/.config/fish/completions/pnpm.fish
-    cp ./pnpm-shell-completion $1/pnpm-shell-completion
+    cp ./pnpm-shell-completion $argv[1]
 else
     echo "$argv[1] is not exist"
 end
