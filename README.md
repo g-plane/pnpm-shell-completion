@@ -24,6 +24,7 @@ Too many completion items may have impact on efficiency.
 
 - Zsh
 - PowerShell Core
+- fish
 
 ## Installation
 
