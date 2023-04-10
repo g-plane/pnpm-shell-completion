@@ -6,6 +6,10 @@ or
 
 [![asciicast](https://asciinema.org/a/559081.svg)](https://asciinema.org/a/559081)
 
+**fish**
+
+https://user-images.githubusercontent.com/17974631/230724177-c23eb38c-6112-49f8-8091-54c68a074739.webm
+
 _You may also like:_
 
 - [icd](https://github.com/g-plane/icd) - Powerful `cd` command with fuzzy-search tool.
