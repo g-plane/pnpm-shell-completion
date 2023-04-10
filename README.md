@@ -99,6 +99,25 @@ and add the following line:
 . path\to\the\directory\you\decompressed\pnpm-shell-completion.ps1
 ```
 
+### fish
+
+Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
+page and download the latest binary files.
+
+For Apple Silicon (M-series chips) users, please choose `aarch64-apple-darwin`;
+for Intel Mac users, please choose `x86_64-apple-darwin`;
+for Linux users, please choose `x86_64-unknown-linux-gnu` or `x86_64-unknown-linux-musl`.
+
+After downloaded, decompress the `.zip` or `.tar.gz` file.
+
+Then, run:
+
+```shell
+fish ./install.fish ${any path that has been added in your $PATH variable}
+```
+
+By default, `pnpm.fish` will be copied to your `~/.config/fish/completions/` according to the [official documentation](https://fishshell.com/docs/current/completions.html).
+
 ## License
 
 MIT License
