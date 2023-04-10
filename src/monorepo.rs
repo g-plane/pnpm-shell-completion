@@ -43,8 +43,15 @@ pub async fn read_package_jsons() -> anyhow::Result<Vec<PackageJson>> {
 async fn scan_directories(globs: GlobSet) -> Result<Vec<PathBuf>, JoinError> {
     tokio::task::spawn_blocking(move || {
         let base_dir = env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
+        // ignore::WalkBuilder::new(&base_dir)
+        //     // disable ignore hidden files
+        //     .hidden(false)
+        //     .build()
         WalkDir::new(&base_dir)
             .into_iter()
+            // .inspect(|_| {
+            //     println!("1");
+            // })
             .map(|entry| entry.map(|entry| entry.into_path()))
             .filter(|path| {
                 path.as_ref()
