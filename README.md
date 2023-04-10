@@ -99,7 +99,7 @@ and add the following line:
 . path\to\the\directory\you\decompressed\pnpm-shell-completion.ps1
 ```
 
-### fish shell
+### fish
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
 page and download the latest binary files.
@@ -116,7 +116,7 @@ Then, run:
 fish ./install.fish ${any path that has been added in your $PATH variable}
 ```
 
-By default, `pnpm.fish` will copy to your `~/.config/fish/completions/` according to the [official documentation](https://fishshell.com/docs/current/completions.html).
+By default, `pnpm.fish` will be copied to your `~/.config/fish/completions/` according to the [official documentation](https://fishshell.com/docs/current/completions.html).
 
 ## License
 
