@@ -55,6 +55,8 @@ jobs:
           cp ./target/release/pnpm-shell-completion dist/
           cp ./pnpm-shell-completion.plugin.zsh dist/
           cp ./install.zsh dist/
+          cp ./pnpm-shell-completion.fish dist/
+          cp ./install.fish dist/
           cp ./README.md dist/
           cp ./LICENSE dist/
           cd dist
