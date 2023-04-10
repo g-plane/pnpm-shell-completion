@@ -1,5 +1,5 @@
 if not set -q argv[1]
-    echo "Plugins directory not specified, please pass your zsh plugins directory as a parameter."
+    echo "Plugins directory not specified. Please pass your zsh plugins directory as a parameter."
     exit 1
 end
 
@@ -10,4 +10,3 @@ if test -d $argv[1]
 else
     echo "$argv[1] is not exist"
 end
-
