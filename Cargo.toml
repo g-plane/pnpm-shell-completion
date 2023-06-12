@@ -1,11 +1,12 @@
 [package]
 name = "pnpm-shell-completion"
-version = "0.5.0"
+version = "0.5.1"
 edition = "2021"
 authors = ["Pig Fang <g-plane@hotmail.com>"]
 description = "Complete your pnpm command fastly."
 repository = "https://github.com/g-plane/pnpm-shell-completion"
 license = "MIT"
+publish = false
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
