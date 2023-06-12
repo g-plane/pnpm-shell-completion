@@ -14,6 +14,7 @@ pub async fn provide_scripts_candidate(target_pkg: Option<&str>) -> anyhow::Resu
 
     let scripts = scripts
         .map(|scripts| scripts.keys().join("\n"))
-        .unwrap_or_default();
+        .unwrap_or_default()
+        .replace(":", "\\:");
     Ok(scripts)
 }
