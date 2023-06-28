@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 set -e
 
 local version=$(grep '^version =' Cargo.toml | cut -d'"' -f2)
