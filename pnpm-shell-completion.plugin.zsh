@@ -79,7 +79,7 @@ _pnpm() {
                     ;;
                 run)
                     if [[ -f ./package.json ]]; then
-                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg $pnpm_comp_bin)
+                        _values 'scripts' $(FEATURE=scripts TARGET_PKG=$target_pkg ZSH=true $pnpm_comp_bin)
                     fi
                     ;;
                 *)
