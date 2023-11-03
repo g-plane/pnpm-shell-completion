@@ -1,15 +1,29 @@
 # pnpm-shell-completion
-
-https://user-images.githubusercontent.com/17216317/218267283-ac16f583-506e-473f-9efc-e25095e38504.mp4
-
-or
-
-[![asciicast](https://asciinema.org/a/559081.svg)](https://asciinema.org/a/559081)
-
-**fish**
-
-https://user-images.githubusercontent.com/17974631/230724177-c23eb38c-6112-49f8-8091-54c68a074739.webm
-
+<table width="100%">
+  <thead>
+    <tr>
+      <th width="33%">Zsh</th>
+      <th width="33%">Bash</th>
+      <th width="33%">Fish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td width="33%">
+        <video
+          src="https://user-images.githubusercontent.com/17216317/218267283-ac16f583-506e-473f-9efc-e25095e38504.mp4">
+      </td>
+      <td width="33%">
+        <a href="https://asciinema.org/a/559081" target="_blank"><img src="https://asciinema.org/a/559081.svg" /></a>
+      </td>
+      <td width="33%">
+        <video
+          src="https://user-images.githubusercontent.com/17974631/230724177-c23eb38c-6112-49f8-8091-54c68a074739.webm">
+      </td>
+    </tr>
+  </tbody>
+</table>
+          
 _You may also like:_
 
 - [icd](https://github.com/g-plane/icd) - Powerful `cd` command with fuzzy-search tool.
@@ -20,15 +34,16 @@ _You may also like:_
 - Provide completion for `pnpm remove` command, even in workspace's packages (by specifying `--filter` option).
 - Provide completion for npm scripts in `package.json`.
 
-Note that we won't provide completion for all commands and options,
-and we only focus those frequently used.
-Too many completion items may have impact on efficiency.
+### Limitiation
+
+* Note that we won't provide completion for all commands and options, and we only focus those frequently used. Too many completion items may have impact on efficiency.
+* NPM scripts completion requires the presence of a `name` property in the `package.json` file.
 
 ### Supported shells
 
 - Zsh
 - PowerShell Core
-- fish
+- Fish Shell
 
 ## Installation
 
