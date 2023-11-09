@@ -106,6 +106,8 @@ and add the following line:
 
 ### Fish
 
+Install the plugin using [Fisher](https://github.com/jorgebucaran/fisher):
+
 ```
 fisher install edouard-lopez/pnpm-shell-completion
 ```
