@@ -36,8 +36,8 @@ _You may also like:_
 
 ### Limitiation
 
-* Note that we won't provide completion for all commands and options, and we only focus those frequently used. Too many completion items may have impact on efficiency.
-* NPM scripts completion requires the presence of a `name` property in the `package.json` file.
+- Note that we won't provide completion for all commands and options, and we only focus those frequently used. Too many completion items may have impact on efficiency.
+- NPM scripts completion requires the presence of a `name` property in the `package.json` file.
 
 ### Supported shells
 
