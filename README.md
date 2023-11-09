@@ -105,7 +105,15 @@ and add the following line:
 . path\to\the\directory\you\decompressed\pnpm-shell-completion.ps1
 ```
 
-### fish
+### Fish
+
+#### [Fisher](https://github.com/jorgebucaran/fisher)
+
+```
+fisher install g-plane/pnpm-shell-completion
+```
+
+#### Manual Install
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
 page and download the latest binary files.
