@@ -1,4 +1,3 @@
-
 function _pnpm-shell-completion_install --on-event pnpm-shell-completion_install
     set OS (uname -s)
     set arch (uname -m)
@@ -16,10 +15,8 @@ function _pnpm-shell-completion_install --on-event pnpm-shell-completion_install
     set release_url "https://github.com/g-plane/pnpm-shell-completion/releases/latest/download/pnpm-shell-completion_$target.zip"
     curl -sL $release_url -o release.zip
 
-    # extract binary
     unzip -o release.zip pnpm-shell-completion -d $HOME/.local/bin
 
-    # extract completion script
     mkdir -p $__fish_config_dir/completions/
     unzip -o release.zip pnpm-shell-completion.fish -d $__fish_config_dir/completions/
     mv $__fish_config_dir/completions/{pnpm-shell-completion,pnpm}.fish
