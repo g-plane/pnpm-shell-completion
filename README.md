@@ -109,7 +109,7 @@ and add the following line:
 Install the plugin using [Fisher](https://github.com/jorgebucaran/fisher):
 
 ```
-fisher install edouard-lopez/pnpm-shell-completion
+fisher install g-plane/pnpm-shell-completion
 ```
 
 ## License
