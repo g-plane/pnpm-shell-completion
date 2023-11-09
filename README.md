@@ -106,14 +106,13 @@ and add the following line:
 
 ### Fish
 
-Install the plugin using [Fisher](https://github.com/jorgebucaran/fisher) plugin manager:
+#### [Fisher](https://github.com/jorgebucaran/fisher)
 
 ```
 fisher install g-plane/pnpm-shell-completion
 ```
 
-<details><summary>Don't want to use Fisher? You can <b>install manually</b></summary>
-<p>
+#### Manual Install
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
 page and download the latest binary files.
@@ -131,10 +130,6 @@ fish ./install.fish ${any path that has been added in your $PATH variable}
 ```
 
 By default, `pnpm.fish` will be copied to your `~/.config/fish/completions/` according to the [official documentation](https://fishshell.com/docs/current/completions.html).
-
-
-</p>
-</details>
 
 ## License
 
