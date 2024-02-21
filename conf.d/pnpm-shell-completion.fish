@@ -18,8 +18,7 @@ function _pnpm-shell-completion_install --on-event pnpm-shell-completion_install
     unzip -o release.zip pnpm-shell-completion -d $HOME/.local/bin
 
     mkdir -p $__fish_config_dir/completions/
-    unzip -o release.zip pnpm-shell-completion.fish -d $__fish_config_dir/completions/
-    mv $__fish_config_dir/completions/{pnpm-shell-completion,pnpm}.fish
+    unzip -o release.zip pnpm.fish -d $__fish_config_dir/completions/
 
     rm release.zip
 end
