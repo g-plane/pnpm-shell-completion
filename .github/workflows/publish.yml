@@ -17,7 +17,7 @@ jobs:
           - host: macos-latest
             target: x86_64-apple-darwin
             build: cargo build --release
-          - host: macos-latest
+          - host: macos-14
             target: aarch64-apple-darwin
             build: |
               sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*;
