@@ -68,7 +68,7 @@ source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 #### With Bun
 
-If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to our  `.zshrc`.
+If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to your `.zshrc`.
 
 #### Manual
 
