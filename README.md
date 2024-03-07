@@ -66,6 +66,12 @@ source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 ### Oh My Zsh
 
+#### With Bun
+
+If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to our  `.zshrc`.
+
+#### Manual
+
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
 page and download the latest binary files.
 
