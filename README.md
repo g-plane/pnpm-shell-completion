@@ -66,10 +66,6 @@ source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 ### Oh My Zsh
 
-#### With Bun
-
-If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to your `.zshrc`.
-
 #### Manual
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
@@ -98,6 +94,12 @@ plugins=(
 ```
 
 Restart your terminal.
+
+#### With Bun
+
+*Disclaimer: the `pnpm-oh-my-zsh-completion-install` package isn't maintained officially, and we can't guarantee the security so use at your own risk.*
+
+If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to your `.zshrc`.
 
 ### PowerShell Core
 
