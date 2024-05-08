@@ -16,7 +16,7 @@ jobs:
         settings:
           - host: macos-latest
             target: x86_64-apple-darwin
-            build: cargo build --target=${{ matrix.settings.target }} --release
+            build: cargo build --target=x86_64-apple-darwin --release
           - host: macos-14
             target: aarch64-apple-darwin
             build: |
@@ -25,27 +25,24 @@ jobs:
               export CXX=$(xcrun -f clang++);
               SYSROOT=$(xcrun --sdk macosx --show-sdk-path);
               export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT";
-              cargo build --target=${{ matrix.settings.target }} --release
+              cargo build --target=aarch64-apple-darwin --release
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            build: cargo build --target=${{ matrix.settings.target }} --release
+            build: cargo build --target=x86_64-unknown-linux-gnu --release
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            build: cargo build --target=${{ matrix.settings.target }} --release
+            build: cargo build --target=x86_64-unknown-linux-musl --release
           - host: windows-latest
             target: x86_64-pc-windows-gnu
-            build: cargo build --target=${{ matrix.settings.target }} --release
+            build: cargo build --target=x86_64-pc-windows-gnu --release
     name: ${{ matrix.settings.target }}
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v3
       - name: Install
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          profile: minimal
-          override: true
-          toolchain: stable
-          target: ${{ matrix.settings.target }}
+          targets: ${{ matrix.settings.target }}
       - name: Build
         run: ${{ matrix.settings.build }}
       - name: Pack
