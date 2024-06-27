@@ -101,6 +101,16 @@ Restart your terminal.
 
 If you have [Bun](https://bun.sh/), you can run `bunx pnpm-oh-my-zsh-completion-install` which will download latest release, unpack, copy and add the plugin to your `.zshrc`.
 
+### [Zim](https://github.com/zimfw/zimfw)
+
+Add the following line to your `.zimrc` file:
+
+```shell
+zmodule git@github.com:g-plane/pnpm-shell-completion.git --on-pull './zplug.zsh'
+```
+
+Make sure this line comes after `zmodule completion`. If it doesn't exist, add it manually.
+
 ### PowerShell Core
 
 Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
