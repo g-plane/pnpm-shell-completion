@@ -21,5 +21,5 @@ else
     curl -fsSL $url -o zipball.zip
 fi
 
-unzip zipball.zip pnpm-shell-completion
+unzip -o zipball.zip pnpm-shell-completion
 rm zipball.zip
