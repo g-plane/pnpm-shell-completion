@@ -83,9 +83,8 @@ RELEASE_FILE=https://github.com/g-plane/pnpm-shell-completion/releases/download/
 
 cd /tmp && git clone https://github.com/g-plane/pnpm-shell-completion.git && cd pnpm-shell-completion
 
-curl -L $RELEASE_FILE -o pnpm-shell-completion.zip
-tar -xzf pnpm-shell-completion.zip
-mv release/pnpm-shell-completion .
+curl -L $RELEASE_FILE -o pnpm-shell-completion.tar.gz
+tar -xzf pnpm-shell-completion.tar.gz
 ``` 
 
 Then, install with the following command:
