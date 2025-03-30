@@ -68,22 +68,33 @@ source /usr/share/zsh/plugins/pnpm-shell-completion/pnpm-shell-completion.zsh
 
 #### Manual
 
-Please go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases)
-page and download the latest binary files.
+Go to the [GitHub releases](https://github.com/g-plane/pnpm-shell-completion/releases) page and copy the link to the latest release file that matches your system architecture.
 
-For Apple Silicon (M-series chips) users, please choose `aarch64-apple-darwin`;
-for Intel Mac users, please choose `x86_64-apple-darwin`;
-for Linux users, please choose `x86_64-unknown-linux-gnu` or `x86_64-unknown-linux-musl`.
+|  Architecture                   | Release File                                           |
+|---------------------------------|--------------------------------------------------------|
+|  Apple Silicon (M-series chips) | `pnpm-shell-completion_aarch64-apple-darwin.tar.gz`    |
+|  Intel Mac                      | `pnpm-shell-completion_x86_64-apple-darwin.tar.gz`     |
+|  Linux                          | `pnpm-shell-completion_x86_64-unknown-linux-gnu.tar.gz`| 
 
-After downloaded, decompress the `.zip` or `.tar.gz` file.
+**Download the required files.** For example, if you are using an x86_64 Linux system:
+```shell
+# Replace the link with the one you copied above
+RELEASE_FILE=https://github.com/g-plane/pnpm-shell-completion/releases/download/v0.5.4/pnpm-shell-completion_x86_64-unknown-linux-gnu.tar.gz
 
-Then, run:
+cd /tmp && git clone https://github.com/g-plane/pnpm-shell-completion.git && cd pnpm-shell-completion
+
+curl -L $RELEASE_FILE -o pnpm-shell-completion.zip
+tar -xzf pnpm-shell-completion.zip
+mv release/pnpm-shell-completion .
+``` 
+
+Then, install with the following command:
 
 ```shell
 ./install.zsh $ZSH_CUSTOM/plugins
 ```
 
-Next, please edit your `.zshrc` file.
+Next, edit your `.zshrc` file.
 Add `pnpm-shell-completion` to `plugins` section like this:
 
 ```diff
