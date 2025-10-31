@@ -1,5 +1,3 @@
-set -g filter_flag
-
 set -g __fish_pnpm_cmdline
 set -g __fish_pnpm_remove_cmdline
 
@@ -8,12 +6,13 @@ set -l up_commands update upgrade up
 set -l install_commands install i
 
 complete -c pnpm -f
-complete -c pnpm -n "not __fish_seen_subcommand_from $deps_commands" -a "(__get_scripts)"
+complete -c pnpm -a "(__get_scripts)"
 complete -c pnpm -f -l filter -s F -r -a "$(FEATURE=filter pnpm-shell-completion)" -d 'Select specified packages'
-# add relative args
-complete -c pnpm -n "not __fish_use_subcommand" -f -a "add remove install update publish"
-complete -c pnpm -n __could_add_global -l global -s g
+complete -c pnpm -n "__fish_use_subcommand; or __has_filter" -f -a 'add remove install update publish'
+complete -c pnpm -n "not __fish_use_subcommand" -F
 
+# add relative options
+complete -c pnpm -n __could_add_global -l global -s g -d 'Install a global package'
 complete -c pnpm -n "__fish_seen_subcommand_from add" -l save-dev -s D -d 'Save package to your `devDependencies`'
 complete -c pnpm -n "__fish_seen_subcommand_from add" -l save-peer -d 'Save package to your `peerDependencies` and `devDependencies`'
 
@@ -78,18 +77,17 @@ function __has_filter
   set -l tokens (commandline -opc)
   set -e tokens[1] # assume the first token is `pnpm`
   argparse 'F/filter=' -- $tokens 2>/dev/null
-  if count $_flag_filter == 0
+  if not count $_flag_filter
     return 1
   end
   return 0
 end
 
-# predicate function, 1 means false, 0 means true
 function __could_add_global
-  if __has_filter == 0
+  if __has_filter
     return 1
   end
-  if __fish_seen_subcommand_from add == 0
+  if __fish_seen_subcommand_from add
     return 0
   end
   return 1
