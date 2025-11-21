@@ -14,37 +14,28 @@ jobs:
       fail-fast: false
       matrix:
         settings:
-          - host: macos-latest
+          - host: macos-13
             target: x86_64-apple-darwin
-            build: cargo build --target=x86_64-apple-darwin --release
-          - host: macos-14
+          - host: macos-latest
             target: aarch64-apple-darwin
-            build: |
-              sudo rm -Rf /Library/Developer/CommandLineTools/SDKs/*;
-              export CC=$(xcrun -f clang);
-              export CXX=$(xcrun -f clang++);
-              SYSROOT=$(xcrun --sdk macosx --show-sdk-path);
-              export CFLAGS="-isysroot $SYSROOT -isystem $SYSROOT";
-              cargo build --target=aarch64-apple-darwin --release
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            build: cargo build --target=x86_64-unknown-linux-gnu --release
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            build: cargo build --target=x86_64-unknown-linux-musl --release
+          - host: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
           - host: windows-latest
             target: x86_64-pc-windows-gnu
-            build: cargo build --target=x86_64-pc-windows-gnu --release
     name: ${{ matrix.settings.target }}
     runs-on: ${{ matrix.settings.host }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.settings.target }}
       - name: Build
-        run: ${{ matrix.settings.build }}
+        run: cargo build --target=${{ matrix.settings.target }} --release
       - name: Pack
         if: matrix.settings.host != 'windows-latest'
         run: |
@@ -79,7 +70,7 @@ jobs:
           Copy-Item .\LICENSE dist
           Compress-Archive "dist\*" pnpm-shell-completion_pwsh_${{ matrix.settings.target }}.zip
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: |
             pnpm-shell-completion_*.zip
