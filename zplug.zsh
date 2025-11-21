@@ -10,7 +10,11 @@ if [ $(uname) = "Darwin" ]; then
         target="x86_64-apple-darwin"
     fi
 else
-    target="x86_64-unknown-linux-musl"
+    if [ $(uname -m) = "aarch64" ]; then
+        target="aarch64-unknown-linux-gnu"
+    else
+        target="x86_64-unknown-linux-musl"
+    fi
 fi
 
 local url="https://github.com/g-plane/pnpm-shell-completion/releases/download/v$version/pnpm-shell-completion_$target.zip"
